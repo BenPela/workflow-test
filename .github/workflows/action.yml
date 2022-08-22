@@ -1,0 +1,25 @@
+on:
+   push:
+     branches: [ main, develop ]
+     paths-ignore:
+       - 'templates/**'
+       - 'config/**'
+jobs:
+  build:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v2
+       - name: Pushes to all staging sites
+         run: |
+           git fetch
+           git checkout develop
+           git pull
+           git checkout -b staging/UK
+           git merge develop
+           git push -f --set-upstream origin staging/UK
+           git checkout -b staging/US
+           git merge develop
+           git push -f --set-upstream origin staging/US
+           git checkout -b staging/EU
+           git merge develop
+           git push -f --set-upstream origin staging/EU
