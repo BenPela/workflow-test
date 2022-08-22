@@ -1,3 +1,4 @@
+
 on:
    push:
      branches: [ main, develop ]
@@ -17,9 +18,3 @@ jobs:
            git checkout -b staging/UK
            git merge develop
            git push -f --set-upstream origin staging/UK
-           git checkout -b staging/US
-           git merge develop
-           git push -f --set-upstream origin staging/US
-           git checkout -b staging/EU
-           git merge develop
-           git push -f --set-upstream origin staging/EU
