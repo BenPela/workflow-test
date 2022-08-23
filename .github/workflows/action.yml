@@ -18,3 +18,4 @@ jobs:
            git checkout -b staging/UK
            git merge develop
            git push -f --set-upstream origin staging/UK
+
