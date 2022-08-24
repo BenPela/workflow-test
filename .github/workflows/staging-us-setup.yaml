@@ -22,7 +22,7 @@ jobs:
         run: |
           git config --global user.name "staging-automation"
           git config --global user.email "qa.automation+staging@pela.earth"
-          git merge -s ours origin/develop
+          git merge -X theirs origin/develop
 
       - name: Get Templates/Config from production
         run: |
