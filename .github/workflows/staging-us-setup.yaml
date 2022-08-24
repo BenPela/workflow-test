@@ -20,6 +20,8 @@ jobs:
 
       - name: Merge Dev into staging  #Any conflicts, keep ours. Code should not conflict. 
         run: |
+          git config --global user.name "staging-automation"
+          git config --global user.email "qa.automation+staging@pela.earth"
           git merge -s ours origin/develop
 
       - name: Get Templates/Config from production
@@ -30,8 +32,6 @@ jobs:
           git checkout -f production/us templates/*.json
           git checkout -f production/us templates/**/*.json
           git checkout -f production/us config/*.json
-          git config --global user.name "staging-automation"
-          git config --global user.email "qa.automation+staging@pela.earth"
           git commit -a -m "Back Merge Content From Production" || echo "Nothing to back merge"
 
       - name: Reset Templates and Config
