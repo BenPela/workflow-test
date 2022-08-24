@@ -32,13 +32,14 @@ jobs:
           git checkout -f production/us templates/*.json
           git checkout -f production/us templates/**/*.json
           git checkout -f production/us config/*.json
-          git commit -a -m "Back Merge Content From Production" || echo "Nothing to back merge"
-          git status
-          git push -f --set-upstream origin staging/us
+          # git commit -a -m "Back Merge Content From Production" || echo "Nothing to back merge"
+          # git status
+          # git push -f --set-upstream origin staging/us
 
       - name:
         uses: peter-evans/create-pull-request@v3
         with:
+          commit-message: "Back Merge Content From Production"
           branch: production/us
           title: "Release, US"
           body: "Release, US"
