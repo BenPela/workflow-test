@@ -1,0 +1,57 @@
+
+name: Staging Setup
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  staging-us-setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2 
+        with:
+          ref: production/us
+          fetch-depth: 0
+
+      - name: Checkout or Create staging-us from prod
+        run: git checkout staging/us || git checkout -b staging/us
+
+      - name: Merge Dev into staging  #Any conflicts, keep ours. Code should not conflict. 
+        run: |
+          git config --global user.name "staging-automation"
+          git config --global user.email "qa.automation+staging@pela.earth"
+          git merge -X theirs origin/develop
+
+      - name: Get Templates/Config from production
+        run: |
+          rm templates/*.json
+          rm templates/**/*.json
+          rm config/*.json
+          git checkout -f production/us templates/*.json
+          git checkout -f production/us templates/**/*.json
+          git checkout -f production/us config/*.json
+          # git commit -a -m "Back Merge Content From Production" || echo "Nothing to back merge"
+          # git status
+          # git push -f --set-upstream origin staging/us
+
+      - name:
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "Back Merge Content From Production"
+          branch: production/us
+          title: "Release, US"
+          body: "Release, US"
+
+
+
+
+
+
+
+
+
+
+
+
