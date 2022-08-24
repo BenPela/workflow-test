@@ -41,7 +41,9 @@ jobs:
           git checkout -f HEAD config*.json
 
       - name: Make merge Commit
-        run: git commit -a -m "Merge dev into staging (not including templates/config)"
+        run: |
+          git status
+          git commit -a -m "Merge dev into staging (not including templates/config)"
 
       - name:
         uses: peter-evans/create-pull-request@v3
