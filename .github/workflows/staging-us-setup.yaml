@@ -17,11 +17,18 @@ jobs:
       - name: Checkout or Create staging-us from prod
         run: git checkout -b staging/us
 
-      - name: Merge prod into staging, default keep theirs
-        run: git merge -s theirs production/us
+      - name: Get Templates/Config from production
+        run: |
+          rm templates/*.json
+          rm templates/**/*.json
+          rm config/*.json
+          git checkout -f staging/us templates/*.json
+          git checkout -f staging/us templates/**/*.json
+          git checkout -f staging/us config/*.json
+          git commit -a -m "Back Merge Content From Production"
 
       - name: Merge Dev into staging, keeping dev while not committing
-        run: git merge -s -no-commit theirs develop 
+        run: git merge -s theirs -no-commit develop 
 
       - name: Reset Templates and Config
         run: |
