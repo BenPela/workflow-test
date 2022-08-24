@@ -17,8 +17,11 @@ jobs:
       - name: Checkout or Create staging-us from prod
         run: git checkout -b staging/us
 
-      - name: Merge Dev into staging  #Any conflicts, keep ours. Code should not conflict.
-        run: git merge -s ours develop
+      - name: Merge Dev into staging  #Any conflicts, keep ours. Code should not conflict. 
+        run: |
+          git checkout develop
+          git checkout staging/us
+          git merge -s ours develop
 
       - name: Get Templates/Config from production
         run: |
