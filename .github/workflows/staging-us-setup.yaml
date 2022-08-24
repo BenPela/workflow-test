@@ -33,6 +33,7 @@ jobs:
           git checkout -f production/us templates/**/*.json
           git checkout -f production/us config/*.json
           git commit -a -m "Back Merge Content From Production" || echo "Nothing to back merge"
+          git status
           git push -f
 
       - name:
