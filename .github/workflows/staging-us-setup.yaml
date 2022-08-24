@@ -1,0 +1,51 @@
+
+name: Unit Tests
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  staging-us-setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2 
+        with:
+          ref: production/us
+
+      - name: Checkout or Create staging-us from prod
+        run: git checkout -b staging/us
+
+      - name: Merge prod into staging, default keep theirs
+        run: git merge -s theirs production/us
+
+      - name: Merge Dev into staging, keeping dev while not committing
+        run: git merge -s -no-commit theirs develop 
+
+      - name: Reset Templates and Config
+        run: |
+          git checkout -f HEAD templates/*.json
+          git checkout -f HEAD templates/**/*.json
+          git checkout -f HEAD config*.json
+
+      - name: Make merge Commit
+        run: git commit -a -m "Merge dev into staging (not including templates/config"
+
+      - name:
+        uses peter-evans/create-pull-request@v3
+        with:
+          title: "Release, US"
+          body: "Release, US"
+        
+
+
+
+
+
+
+
+
+
+
+
