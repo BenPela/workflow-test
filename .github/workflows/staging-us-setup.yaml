@@ -16,11 +16,11 @@ jobs:
           fetch-depth: 0
 
       - name: Checkout or Create staging-us from prod
-        run: git checkout -b staging/us
+        run: git checkout staging/us ||git checkout -b origin/staging/us
 
       - name: Merge Dev into staging  #Any conflicts, keep ours. Code should not conflict. 
         run: |
-          git merge -s ours develop
+          git merge -s ours origin/develop
 
       - name: Get Templates/Config from production
         run: |
