@@ -39,7 +39,7 @@ jobs:
       - name:
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: productions/us
+          branch: production/us
           title: "Release, US"
           body: "Release, US"
 
