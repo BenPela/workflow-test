@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "THIS IS ANOTHER DEV CONTENT CHANGE"
+      "type": "THIS CONTENT WAS CHANGED ON PROD"
     }
   },
   "order": [
