@@ -47,13 +47,6 @@ jobs:
           body: "Release, US"
 
 
-          "templates/*.json"
-          git checkout -f production/eu "config/*.json"
-          git checkout -f production/eu "assets/6F6PPjfpBQ3WfqAm.js"
-          git checkout -f production/eu "assets/affirmShopify.js"
-          git checkout -f production/eu "assets/appstle*"
-
-
 
 
 
