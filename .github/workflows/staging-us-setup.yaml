@@ -4,6 +4,11 @@ name: Staging Setup
 on:
   push:
     branches: [ develop ]
+    paths-ignore: 
+      - 'config/*.json'
+      - 'assets/6F6PPjfpBQ3WfqAm.js'
+      - 'assets/affirmShopify.js'
+      - 'assets/appstle*'
 
 jobs:
   staging-us-setup:
@@ -40,6 +45,13 @@ jobs:
           branch: production/us
           title: "Release, US"
           body: "Release, US"
+
+
+          "templates/*.json"
+          git checkout -f production/eu "config/*.json"
+          git checkout -f production/eu "assets/6F6PPjfpBQ3WfqAm.js"
+          git checkout -f production/eu "assets/affirmShopify.js"
+          git checkout -f production/eu "assets/appstle*"
 
 
 
