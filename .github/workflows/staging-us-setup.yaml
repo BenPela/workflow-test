@@ -4,6 +4,11 @@ name: Staging Setup
 on:
   push:
     branches: [ develop ]
+    paths-ignore: 
+      - 'config/*.json'
+      - 'assets/6F6PPjfpBQ3WfqAm.js'
+      - 'assets/affirmShopify.js'
+      - 'assets/appstle*'
 
 jobs:
   staging-us-setup:
